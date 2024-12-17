@@ -13,7 +13,15 @@ return [
     |
     */
 
-    'name' => 'My Deneme App',
+    'code' => 'PDM',
+    'name' => 'Product Data Management',
+    'synopsis' => 'From checkout to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.',
+    'title' => 'PDM - Product Data Management',
+    'favicon' => '/images/favicon.svg',
+    'copyright' => 'All Rights Reserved',
+    'version' => '&copy; 2023.01',
+    'motto' => 'Be Agile, Run Agile',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -122,6 +130,65 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hero Cards
+    |--------------------------------------------------------------------------
+    |
+    |
+    |
+    */
+
+
+    'heroCards' => [
+
+        [
+            "img" => "dds.svg",
+            "title" => "Data-Driven Success",
+            "content" => "PDM empowers businesses by organizing, tracking, and optimizing product-related data. Success lies in harnessing this data effectively."
+        ],
+
+        [
+            "img" => "dms.svg",
+            "title" => "Data Make Sense",
+            "content" => "PDM bridges the gap between raw information and actionable insights, leading to successful product development."
+        ],
+        [
+            "img" => "oiydw.svg",
+            "title" => "Order in Your Data World",
+            "content" => "PDM brings structure and clarity, ensuring seamless collaboration across teams."
+        ],
+
+    ],
+
+
+
+
+
+    /*
+    |--------------
+    | kapkara
+    |--------------------------------------------------------------------------
+    |
+    |
+    |
+    */
+
+    'kapkara' => [
+        'name' => 'kapkara',
+        'logo' => 'baykus_orange.svg',
+        'link' => 'https://kapkara.one',
+        'motto' => 'Simplicity In Action',
+        'title' => 'web technologies | design house',
+    ],
+
+
+
 
 
 

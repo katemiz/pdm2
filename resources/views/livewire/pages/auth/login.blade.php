@@ -14,9 +14,7 @@ $login = function () {
     $this->validate();
 
     $this->form->authenticate();
-
     Session::regenerate();
-
     $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
 };
 
@@ -28,24 +26,15 @@ $login = function () {
 
     <form wire:submit="login">
 
-        <x-mary-card title="Your stats" subtitle="Our findings about you" shadow separator>
-            I have title, subtitle, separator and shadow.
-        </x-mary-card>
+        <x-mary-header title="{{ config('app.code')}}" subtitle="{{ config('app.name')}}" />
 
+        <div class="flex justify-center items-center">
+            {{-- <x-mary-icon name="o-pencil-square" class="w-24 h-24 bg-red-300 text-white p-2 rounded-full my-16" /> --}}
 
-
-
-
-
-
-
-
-        <div>
-            <img src="https://picsum.photos/500/200" />
+            <a href="/" wire:navigate>
+                <x-application-logo class="w-32 h-32 my-12  text-blue-500" />
+            </a>
         </div>
-
-        <x-mary-icon name="o-pencil-square" class="w-24 h-24 bg-orange-500 text-white p-2 rounded-full my-16" />
-        <x-mary-header title="Personal address" subtitle="Your home address" separator />
 
         <!-- Email Address -->
         <div>
