@@ -11,22 +11,16 @@ $logout = function (Logout $logout) {
 ?>
 
 
-
-
-
 <footer class="flex flex-col py-16 bg-gray-800">
-
-
-
-
-
 
     <div class="flex flex-col lg:flex-row gap-12 p-4 text-white text-center lg:text-left">
 
         <div class="flex flex-col w-full md:w-1/3">
-            <img src="{{ asset('/images/baykus_orange.svg') }}" width="28" alt="Company Icon" class="mx-auto sm:mx-0 my-2">
-            <p>{{ config('app.kapkara.name') }}</p>
-            <p class="font-sm text-orange-500">{{ config('app.kapkara.motto') }} </p>
+            <div>
+                <img src="{{ asset('/images/baykus_orange.svg') }}" width="28" alt="Company Icon" class="mx-auto sm:mx-0 my-2">
+            </div>
+            <div>{{ config('app.kapkara.name') }}</div>
+            <div class="font-sm text-orange-500">{{ config('app.kapkara.motto') }} </div>
         </div>
 
         <div class="text-center w-full md:w-1/3">

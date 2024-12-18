@@ -1,8 +1,5 @@
 <x-app-layout>
 
-
-
-
     <div class="relative h-screen w-full flex items-center justify-start text-left bg-cover bg-center" style="background-image:url('{{ asset('/images/Hero.jpeg') }}');">
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-900 opacity-75"></div>
 
@@ -79,14 +76,6 @@
         </main>
 
     </div>
-
-
-
-
-
-
-
-
 
 </x-app-layout>
 

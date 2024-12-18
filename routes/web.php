@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Livewire\Volt\Volt;
+
+
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
@@ -13,3 +16,9 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+
+
+
+Volt::route('/docs', 'docs.index');
+
