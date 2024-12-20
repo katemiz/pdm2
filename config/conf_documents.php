@@ -114,17 +114,19 @@ return [
 
 
     'docTypes' => [
-        'GR' => 'General Document',
-        'TR' => 'Test Report',
-        'AR' => 'Analysis Report',
-        'MN' => 'User Manual',
-        'ME' => 'Memo',
-        'PR' => 'Presentation'
+
+        ['id' => 'GR', 'name' => 'General Document'],
+        ['id' => 'TR', 'name' => 'Test Report'],
+        ['id' => 'AR', 'name' => 'Analysis Document'],
+        ['id' => 'MN', 'name' => 'User Manual'],
+        ['id' => 'ME', 'name' => 'Memo'],
+        ['id' => 'PR', 'name' => 'Presentation'],
     ],
 
     'languages' => [
-        'EN' => 'English',
-        'TR' => 'Türkçe'
+
+        ['id' => 'EN', 'name' => 'English'],
+        ['id' => 'TR', 'name' => 'Türkçe'],
     ]
 
 

@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// use Livewire\Volt\Volt;
-
-
+use Livewire\Volt\Volt;
 
 
 use App\Livewire\Documents;
@@ -42,7 +40,12 @@ Route::middleware(['auth'])->group(function () {
 
     // DOCUMENTS
     // *****************************************************************************
-    Route::get('/docs', Documents::class);
+    // Route::get('/docs', Documents::class);
+
+    Volt::route('/docs', 'docs.volt');
+
+
+
     Route::get('/docs/create', DocumentCreateUpdate::class);
     Route::post('/docs', DocumentCreateUpdate::class);
     Route::get('/docs/{id}', DocumentShow::class);

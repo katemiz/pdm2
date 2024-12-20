@@ -30,6 +30,15 @@ class Document extends Authenticatable
         'remember_token',
     ];
 
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
@@ -52,4 +61,12 @@ class Document extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function getDocNoAttribute($value) {
+        return 'D'.$this->document_no.' R'.$this->revision;
+    }
+
+
+
 }

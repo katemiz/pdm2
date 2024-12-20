@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Models\Attachment;
 use App\Models\Counter;
 use App\Models\Company;
@@ -72,6 +74,26 @@ class Documents extends Component
     public $language = 'TR';
 
 
+    public bool $showDrawer = false;
+
+
+    public int $author_id = 0; 
+
+    public array $sortBy = ['column' => 'title', 'direction' => 'asc'];
+
+    public $headers = [
+        ['key' => 'id', 'label' => '#','class' => 'bg-red-500/20 w-1'],
+        ['key' => 'title', 'label' => 'Document Title','class' => 'bg-green-300'],
+
+        ['key' => 'user.full_name', 'label' => 'Author','class' => 'bg-green-300'],
+
+
+        ['key' => 'doc_type', 'label' => 'Type'],
+        ['key' => 'language', 'label' => 'Language'],
+        ['key' => 'created_at', 'label' => 'Date', 'format' => ['date', 'd/m/Y']],
+    ];
+
+
     public function mount()
     {
         $this->conf = config('conf_documents');
@@ -79,18 +101,62 @@ class Documents extends Component
     }
 
 
+
+
+
+
+
     public function render()
     {
-        $this->setProps();
 
-        // $records = $this->getDocumentsList();
+        $records = Document::query()
+            ->with(['user'])
+            // ->withAggregate('user', 'name') 
+            ->when($this->query, fn(Builder $q) => $q->where('title', 'like', "%$this->query%"))
+            ->when($this->author_id, fn(Builder $q) => $q->where('user_id', $this->author_id)) 
+            ->orderBy(...array_values($this->sortBy))
+            ->paginate(20);
+
+
 
         return view('livewire.docs.index',[
-            'records' => $this->getDocumentsList()
-        ]);
 
-        // return view('documents.index',compact('records'));
+            'records' => $records
+        ]);
+        
+
+ 
     }
+
+
+
+        // Add a new property
+        public function with(): array
+        {
+
+
+
+            return [
+                'authors' => User::all(), 
+            ];
+        }
+
+
+
+
+    // public function render()
+    // {
+    //     //$this->setProps();
+
+    //     // $records = $this->getDocumentsList();
+
+
+    //     // return view('livewire.docs.index',[
+    //     //     'records' => $this->getDocumentsList()
+    //     // ]);
+
+    //     // return view('documents.index',compact('records'));
+    // }
 
 
     #[On('startQuerySearch')]
