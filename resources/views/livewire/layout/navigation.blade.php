@@ -66,7 +66,7 @@ $logout = function (Logout $logout) {
 
 
 
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate >
+                        <x-nav-link href="/docs" :active="request()->routeIs('dashboard')" wire:navigate >
                             Documents
                         </x-nav-link>
 

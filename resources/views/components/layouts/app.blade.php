@@ -20,31 +20,10 @@
 
         <livewire:layout.navigation />
 
-
-
-
-    {{-- <body style="background-image: url('{{ asset('/images/HeroPage1.png') }}');" class="bg-cover bg-center bg-no-repeat"> --}}
-
-
-
-
-
-
-
-        {{-- <section class="min-h-screen bg-gray-300"> --}}
-
-            {{-- <div class="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 bg-cyan-200"> --}}
-            {{-- <div class="grid max-w-screen-2xl mx-auto bg-cyan-200"> --}}
-
-
-
-                {{ $slot }}
-
-            {{-- </div>
-
-        </section> --}}
+        {{ $slot }}
 
         <livewire:layout.footer />
 
     </body>
+    
 </html>

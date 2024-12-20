@@ -6,10 +6,6 @@
     <x-mary-header title="Products" subtitle="List of Products"  />
 
 
-
-
-
-
     </div>
     </div>
 

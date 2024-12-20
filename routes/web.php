@@ -2,7 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
-use Livewire\Volt\Volt;
+// use Livewire\Volt\Volt;
+
+
+
+
+use App\Livewire\Documents;
+use App\Livewire\DocumentShow;
+use App\Livewire\DocumentCreateUpdate;
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 
 Route::view('/', 'welcome');
@@ -19,6 +38,19 @@ require __DIR__.'/auth.php';
 
 
 
+Route::middleware(['auth'])->group(function () {
 
-Volt::route('/docs', 'docs.index');
+    // DOCUMENTS
+    // *****************************************************************************
+    Route::get('/docs', Documents::class);
+    Route::get('/docs/create', DocumentCreateUpdate::class);
+    Route::post('/docs', DocumentCreateUpdate::class);
+    Route::get('/docs/{id}', DocumentShow::class);
+    Route::get('/docs/{id}/edit', DocumentCreateUpdate::class);
+    Route::patch('/docs/{id}', DocumentCreateUpdate::class);
+    Route::delete('/docs/{id}', DocumentCreateUpdate::class);
+
+});
+
+
 
