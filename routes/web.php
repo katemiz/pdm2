@@ -42,16 +42,16 @@ Route::middleware(['auth'])->group(function () {
     // *****************************************************************************
     // Route::get('/docs', Documents::class);
 
-    Volt::route('/docs', 'docs.volt');
+    Volt::route('/docs', 'docs.index');
+    Volt::route('/docs/create', 'docs.create');       // User (create)
+    Volt::route('/docs/{id}/edit', 'docs.edit');    // User (edit)
 
-
-
-    Route::get('/docs/create', DocumentCreateUpdate::class);
-    Route::post('/docs', DocumentCreateUpdate::class);
-    Route::get('/docs/{id}', DocumentShow::class);
-    Route::get('/docs/{id}/edit', DocumentCreateUpdate::class);
-    Route::patch('/docs/{id}', DocumentCreateUpdate::class);
-    Route::delete('/docs/{id}', DocumentCreateUpdate::class);
+    // Route::get('/docs/create', DocumentCreateUpdate::class);
+    // Route::post('/docs', DocumentCreateUpdate::class);
+    // Route::get('/docs/{id}', DocumentShow::class);
+    // Route::get('/docs/{id}/edit', DocumentCreateUpdate::class);
+    // Route::patch('/docs/{id}', DocumentCreateUpdate::class);
+    // Route::delete('/docs/{id}', DocumentCreateUpdate::class);
 
 });
 

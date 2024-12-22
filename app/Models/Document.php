@@ -68,5 +68,16 @@ class Document extends Authenticatable
     }
 
 
+    public function getTypeNameAttribute($value) {
+
+        foreach (config('conf_documents.docTypes') as $docType) {
+            if ($docType['id'] == $this->doc_type) {
+                return $docType['name'];
+            }
+        }
+        return '';
+    }
+
+
 
 }
