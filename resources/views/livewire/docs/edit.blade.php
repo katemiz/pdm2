@@ -21,13 +21,16 @@ new class extends Component {
     public DocumentForm $form;
 
 
-    public $did;
+    // public $did;
 
     public $title;
     public $notes;
     public $company_id;
     public $doc_type;
     public $language;
+
+
+    public $files = [];
 
 
 
@@ -47,6 +50,8 @@ new class extends Component {
 
         $this->did = request('id');
 
+        $this->form->rid = $this->did;
+
         $doc = Document::find($this->did);
 
         $this->company_id = $doc->company_id;
@@ -62,9 +67,7 @@ new class extends Component {
 
     public function update() {
 
-        $this->did = request('id');
-
-        $doc = Document::find($this->did);
+        $doc = Document::find($this->form->rid);
 
         $this->company_id = $doc->company_id;
         $this->doc_type = $doc->doc_type;
@@ -75,21 +78,35 @@ new class extends Component {
     }
 
 
+    public function removeFile($fileToRemove) {
+
+        foreach ($this->files as $key => $dosya) {
+            if ($dosya->getClientOriginalName() == $fileToRemove) {
+                unset($this->files[$key]);
+            }
+        }
+    }
 
 
+
+    public function mount() {
+
+        if (request('id')) {
+            $this->form->rid = request('id');
+        }
+
+    }
 
 
     public function with(): array
     {
-        // $this->setProperties();
 
-        $this->form->setDocument(request('id'));
+        $this->form->setDocument();
 
         return [
             'docTypes' => config('conf_documents.docTypes'),
             'languages' => config('conf_documents.languages'),
             'companies' => $this->getCompanies(),
-
         ];
     }
 
@@ -132,6 +149,12 @@ new class extends Component {
                 <x-mary-input label="Document Title" wire:model="form.title" />
                 <livewire:quill wire:model="form.synopsis" label="Document Synopsis" name="synopsis"  :value="$this->form->synopsis" />
                 <x-mary-file wire:model="file" label="Files" hint="Only PDF" accept="application/pdf" multiple/>
+
+
+                <x-file-upload :files="$files" name="files" is_multiple="true" />
+
+
+
 
                 <x-slot:actions>
                     <x-mary-button label="Cancel" />

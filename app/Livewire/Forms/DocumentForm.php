@@ -24,8 +24,8 @@ class DocumentForm extends Form
     #[Validate('min:16', message: 'Document title is too short. At least 16 characters')]
     public String $title = '';
 
-    // RECORD ID
-    public $uid;
+    // FORM RECORD ID
+    public $rid = false;
 
     // DOC NO WITH REVISION
     public $docNo = false;
@@ -68,10 +68,13 @@ class DocumentForm extends Form
 
 
 
-    public function setDocument(Int $id)
+    public function setDocument()
     {
-        $this->uid = $id;
-        $this->document = Document::find($id);
+        if (!$this->rid) {
+            return true;
+        }
+
+        $this->document = Document::find($this->rid);
         $this->docNo = $this->document->docNo;
         $this->title = $this->document->title;
         $this->synopsis = $this->document->remarks ? $this->document->remarks:'';
