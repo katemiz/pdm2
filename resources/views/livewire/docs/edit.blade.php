@@ -31,6 +31,8 @@ new class extends Component {
 
 
     public $files = [];
+    public $files2 = [];
+
 
 
 
@@ -85,6 +87,9 @@ new class extends Component {
                 unset($this->files[$key]);
             }
         }
+
+        $this->dispatch('updateNoOfFiles',name:$fileToRemove);
+
     }
 
 
@@ -148,11 +153,14 @@ new class extends Component {
 
                 <x-mary-input label="Document Title" wire:model="form.title" />
                 <livewire:quill wire:model="form.synopsis" label="Document Synopsis" name="synopsis"  :value="$this->form->synopsis" />
-                <x-mary-file wire:model="file" label="Files" hint="Only PDF" accept="application/pdf" multiple/>
+                {{-- <x-mary-file wire:model="file" label="Files" hint="Only PDF" accept="application/pdf" multiple/> --}}
 
 
-                <x-file-upload :files="$files" name="files" is_multiple="true" />
+                {{-- <x-file-upload :files="$files" is_multiple="true" varName="f1" />
 
+                <x-file-upload :files="$files2" is_multiple="true" varName="f2"/> --}}
+
+                <livewire:fupload wire:model="files" label="Files" hint="Only PDF" accept="application/pdf" multiple/>
 
 
 
