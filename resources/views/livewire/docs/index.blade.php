@@ -87,6 +87,7 @@ new class extends Component {
 
         $list = Document::distinct('user_id')->pluck('user_id')->toArray();
 
+
         foreach ( $list as $aid ) {
 
             $u = User::find($aid);

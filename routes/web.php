@@ -43,7 +43,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/docs', Documents::class);
 
     Volt::route('/docs', 'docs.index');
-    Volt::route('/docs/create', 'docs.create');       // User (create)
+    Volt::route('/docs/create', 'docs.create');     // User (create)
+    Volt::route('/docs/{id}', 'docs.show');         // User (edit)
     Volt::route('/docs/{id}/edit', 'docs.edit');    // User (edit)
 
     // Route::get('/docs/create', DocumentCreateUpdate::class);

@@ -21,13 +21,14 @@ new class extends Component {
     public DocumentForm $form;
 
 
-    // public $did;
-
     public $title;
     public $notes;
     public $company_id;
     public $doc_type;
     public $language;
+
+    public $docTypes;
+    public $languages;
 
 
     public $files = [];
@@ -36,9 +37,15 @@ new class extends Component {
 
 
 
+
+
+
     public function getCompanies() {
 
+       $dizin =[];  
+
         $c = Company::all()->pluck('name', 'id');
+
 
         foreach($c as $id => $name) {
             $dizin[] = ['id' => $id, 'name' => $name];
@@ -94,13 +101,11 @@ new class extends Component {
 
 
 
-    public function mount() {
 
-        if (request('id')) {
-            $this->form->rid = request('id');
-        }
 
-    }
+
+
+
 
 
     public function with(): array
@@ -108,9 +113,15 @@ new class extends Component {
 
         $this->form->setDocument();
 
+    
+
+
+
+
+
         return [
-            'docTypes' => config('conf_documents.docTypes'),
-            'languages' => config('conf_documents.languages'),
+
+            'docTypes' => config('conf_documents.languages'),
             'companies' => $this->getCompanies(),
         ];
     }
@@ -121,6 +132,12 @@ new class extends Component {
 }; ?>
 
 <div class="relative h-screen w-full flex justify-center text-left bg-gray-200">
+
+    
+
+
+
+
 
     <div class="w-full p-12 absolute top-0 bottom-0  ">
 
@@ -140,14 +157,14 @@ new class extends Component {
                 <livewire:radio
                     label="Select Document Type"
                     name="doc_type"
-                    :options="$docTypes"
+                    :options="config('conf_documents.docTypes')"
                     :selected="$this->form->doc_type"
                     wire:model="doc_type" />
 
                 <livewire:radio
                     label="Select Document Language"
                     name="language"
-                    :options="$languages"
+                    :options="config('conf_documents.languages')"
                     :selected="$this->form->language"
                     wire:model="language" />
 
@@ -173,5 +190,18 @@ new class extends Component {
         </x-mary-card>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
