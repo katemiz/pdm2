@@ -34,14 +34,15 @@ class DocumentCreateUpdate extends Component
 
         if ($id) {
             $this->id = $id;
-            $this->form->setDocument($this->id);
+            $this->form->rid = $id;
+            $this->form->readValuesFromDb();
         }
     }
 
 
     public function render()
     {
-        return view('documents.form');
+        return view('livewire.docs.form');
     }
 
 

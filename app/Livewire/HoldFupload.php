@@ -13,6 +13,9 @@ class UploadPhotos extends Component
     #[Validate(['photos.*' => 'image|max:1024'])]
     public $photos = [];
 
+    public $uid;
+    public $label;
+
     public function save()
     {
         foreach ($this->photos as $photo) {

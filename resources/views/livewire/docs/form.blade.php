@@ -1,4 +1,121 @@
-<section class="container mx-auto p-4">
+
+
+
+<div class="mx-auto p-4 bg-gray-200">
+
+
+    <div class="w-full p-12 absolute top-0 bottom-0  ">
+
+        <x-mary-header
+            :title="config('conf_documents.formEdit.title')"
+            :subtitle="config('conf_documents.formEdit.subtitle')"
+        />
+
+
+        <x-mary-card  shadow >
+
+            <x-mary-form wire:submit="update">
+
+                <livewire:radio
+                    label="Select Company"
+                    name="company_id"
+                    :options="$this->form->companies"
+                    :selected="$this->form->company_id"
+                    wire:model="company_id" />
+
+                <livewire:radio
+                    label="Select Document Type"
+                    name="doc_type"
+                    :options="config('conf_documents.docTypes')"
+                    :selected="$this->form->doc_type"
+                    wire:model="doc_type" />
+
+                <livewire:radio
+                    label="Select Document Language"
+                    name="language"
+                    :options="config('conf_documents.languages')"
+                    :selected="$this->form->language"
+                    wire:model="language" />
+
+
+
+
+                <x-mary-input label="Document Title" wire:model="form.title"/>
+
+                <livewire:quill
+                    wire:model="form.synopsis"
+                    label="Document Synopsis"
+                    name="synopsis"
+                    :value="$this->form->synopsis"
+                />
+
+
+                @if ($this->form->docNo)
+                <livewire:file-list
+                    :model="$this->form->document"
+                    collection="Doc"
+                    label="Files"
+                    is_editable="true"
+                />
+                @endif
+
+                {{-- <x-file-upload
+                    wire:model="files"
+                    label="Files"
+                    name="content"
+                    :value="$this->form->synopsis"
+                /> --}}
+
+
+                <x-file-upload
+                    :files="$files"
+                    name="files"
+                    is_multiple="true"
+                />
+
+
+
+                {{-- <livewire:fupload
+                    wire:model="files"
+                    label="Files"
+                    name="files"
+                    hint="Only PDF"
+                    multiple
+                />
+
+                <livewire:fupload
+                    wire:model="files2"
+                    label="Files 2"
+                    name="files2"
+                    hint="Only PDF"
+                    multiple
+                /> --}}
+
+                <x-slot:actions>
+                    <x-mary-button label="Cancel" />
+                    <x-mary-button label="Click me!" class="btn-primary" type="submit" spinner="save" />
+                </x-slot:actions>
+            </x-form>
+
+        </x-mary-card>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+{{-- <section class="container mx-auto p-4">
 
     <livewire:header
         type="Hero"
@@ -52,4 +169,4 @@
 
     </form>
 
-</section>
+</section> --}}

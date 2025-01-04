@@ -18,6 +18,7 @@ new class extends Component {
     public $label;
     public $name;
 
+
     public function updatedValue($value) {
         $this->dispatch(self::EVENT_VALUE_UPDATED, $this->value);
     }
@@ -60,6 +61,9 @@ new class extends Component {
 
 
 <div class="mt-4">
+
+    <h1>AAA {{ $qid }}</h1>
+
 
     <div class="flex flex-col gap-2" wire:ignore>
 

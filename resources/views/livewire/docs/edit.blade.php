@@ -42,7 +42,7 @@ new class extends Component {
 
     public function getCompanies() {
 
-       $dizin =[];  
+       $dizin =[];
 
         $c = Company::all()->pluck('name', 'id');
 
@@ -113,7 +113,7 @@ new class extends Component {
 
         $this->form->setDocument();
 
-    
+
 
 
 
@@ -133,7 +133,7 @@ new class extends Component {
 
 <div class="relative h-screen w-full flex justify-center text-left bg-gray-200">
 
-    
+
 
 
 
@@ -141,7 +141,10 @@ new class extends Component {
 
     <div class="w-full p-12 absolute top-0 bottom-0  ">
 
-        <x-mary-header title="{{ config('conf_documents.formEdit.title') }}" subtitle="{{ config('conf_documents.formEdit.subtitle') }}" />
+        <x-mary-header
+            :title="config('conf_documents.formEdit.title')"
+            :subtitle="config('conf_documents.formEdit.subtitle')"
+        />
 
         <x-mary-card  shadow >
 
@@ -169,17 +172,46 @@ new class extends Component {
                     wire:model="language" />
 
                 <x-mary-input label="Document Title" wire:model="form.title" />
-                <livewire:quill wire:model="form.synopsis" label="Document Synopsis" name="synopsis"  :value="$this->form->synopsis" />
-                {{-- <x-mary-file wire:model="file" label="Files" hint="Only PDF" accept="application/pdf" multiple/> --}}
+
+                <livewire:quill
+                    wire:model="form.synopsis"
+                    label="Document Synopsis"
+                    name="synopsis"
+                    :value="$this->form->synopsis"
+                />
 
 
-                {{-- <x-file-upload :files="$files" is_multiple="true" varName="f1" />
+                {{-- <x-file-upload
+                    wire:model="files"
+                    label="Files"
+                    name="content"
+                    :value="$this->form->synopsis"
+                /> --}}
 
-                <x-file-upload :files="$files2" is_multiple="true" varName="f2"/> --}}
 
-                <livewire:fupload wire:model="files" label="Files" hint="Only PDF" accept="application/pdf" multiple/>
+                <x-file-upload
+                    :files="$files"
+                    name="files"
+                    is_multiple="true"
+                />
 
 
+
+                {{-- <livewire:fupload
+                    wire:model="files"
+                    label="Files"
+                    name="files"
+                    hint="Only PDF"
+                    multiple
+                />
+
+                <livewire:fupload
+                    wire:model="files2"
+                    label="Files 2"
+                    name="files2"
+                    hint="Only PDF"
+                    multiple
+                /> --}}
 
                 <x-slot:actions>
                     <x-mary-button label="Cancel" />
@@ -192,6 +224,10 @@ new class extends Component {
     </div>
 
 
+    @php
+            print_r($this->files);
+
+    @endphp
 
 
 

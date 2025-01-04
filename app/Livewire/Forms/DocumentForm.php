@@ -56,9 +56,7 @@ class DocumentForm extends Form
 
     public function setDocumentProps() {
 
-        foreach (Company::all() as $c) {
-            $this->companies[$c->id] = $c->name;
-        }
+        $this->getCompanies();
 
         $this->company_id =  Auth::user()->company_id;
         $this->company =  Company::find($this->company_id);
@@ -68,7 +66,27 @@ class DocumentForm extends Form
 
 
 
-    public function setDocument()
+
+
+    public function getCompanies() {
+
+        $c = Company::all()->pluck('name', 'id');
+
+        foreach($c as $id => $name) {
+            $this->companies[] = ['id' => $id, 'name' => $name];
+        }
+
+        return true;
+    }
+
+
+
+
+
+
+
+
+    public function readValuesFromDb()
     {
         if (!$this->rid) {
             return true;
@@ -81,6 +99,7 @@ class DocumentForm extends Form
         $this->doc_type = $this->document->doc_type;
         $this->language = $this->document->language;
         $this->company_id =  $this->document->company_id;
+
     }
 
 

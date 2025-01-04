@@ -2,64 +2,28 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class Document extends Authenticatable
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+use App\Models\User;
+use App\Models\Company;
+
+
+class Document extends Model implements HasMedia
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use InteractsWithMedia;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $guarded = ['id'];
+    protected $table = 'documents';
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $guarded = [];
 
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-
-
-
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
-
-    public function languages(): BelongsToMany
-    {
-        return $this->belongsToMany(Language::class);
-    }
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+    public function getAuthorAttribute($value) {
+        $author = User::find($this->user_id);
+        return $author->name.' '.strtoupper($author->lastname);
     }
 
 
@@ -68,16 +32,14 @@ class Document extends Authenticatable
     }
 
 
-    public function getTypeNameAttribute($value) {
-
-        foreach (config('conf_documents.docTypes') as $docType) {
-            if ($docType['id'] == $this->doc_type) {
-                return $docType['name'];
-            }
-        }
-        return '';
+    public function getRevisionsAttribute($value) {
+        //return Document::select('id','revision')->where('document_no',$this->document_no)->order_by('revision', 'ASC');
+        return Document::select('id','revision')->where('document_no',$this->document_no)->get()->toArray();
     }
 
-
+    public function getCompanyNameAttribute($value) {
+        $comp = Company::find($this->company_id);
+        return $comp->name;
+    }
 
 }
