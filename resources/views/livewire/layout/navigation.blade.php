@@ -32,6 +32,7 @@ $logout = function (Logout $logout) {
                     @if(Auth::check())
 
                         <x-dropdown align="left" width="48">
+
                             <x-slot name="trigger">
                                 <button class="inline-flex items-center px-3 py-2  text-sm leading-4 font-base  text-white hover:text-orange-400 focus:outline-none transition ease-in-out duration-150">
                                     <div x-data="{{ json_encode(['name' => 'Admin']) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
@@ -66,22 +67,22 @@ $logout = function (Logout $logout) {
 
 
 
-                        <x-nav-link href="/docs" :active="request()->routeIs('dashboard')" wire:navigate >
+                        <x-nav-link href="/docs"  wire:navigate >
                             Documents
                         </x-nav-link>
 
 
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                        <x-nav-link :href="route('dashboard')" wire:navigate>
                             {{ __('Dashboard') }}
                         </x-nav-link>
 
 
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                        <x-nav-link :href="route('dashboard')"  wire:navigate>
                             {{ __('Dashboard') }}
                         </x-nav-link>
 
 
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                        <x-nav-link :href="route('dashboard')"  wire:navigate>
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
@@ -146,7 +147,7 @@ $logout = function (Logout $logout) {
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+            <x-responsive-nav-link :href="route('dashboard')"  wire:navigate>
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
