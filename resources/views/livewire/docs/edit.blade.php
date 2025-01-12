@@ -131,7 +131,7 @@ new class extends Component {
 
 }; ?>
 
-<div class="relative h-screen w-full flex justify-center text-left bg-gray-200">
+<div class="relative  w-full flex justify-center text-left bg-gray-200">
 
 
 
@@ -222,22 +222,5 @@ new class extends Component {
         </x-mary-card>
 
     </div>
-
-
-    @php
-            print_r($this->files);
-
-    @endphp
-
-
-
-
-
-
-
-
-
-
-
 
 </div>

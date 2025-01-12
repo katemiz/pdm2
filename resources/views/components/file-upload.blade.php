@@ -18,24 +18,23 @@
 
     <div class="flex flex-col flex-grow w-2/3 pl-6" id="files_div">
 
-       @if (count($files) > 0)
+        @foreach ($files as $file)
 
-           @foreach ($files as $file)
 
-               <div class="flex m-1">
+            <div  wire:key="fff{{$loop->index}}">
 
-                   <div class="flex bg-red-400 px-1 py-1 items-center">
-                       <a wire:click="removeFile('{{$file->getClientOriginalName()}}')">
-                           <x-mary-icon name="c-x-mark" class="w-6 h-6 text-white" />
-                       </a>
-                   </div>
+                <x-mary-button
+                    icon="c-x-mark"
+                    wire:click="removeFile('{{ $file->getClientOriginalName() }}')"
+                    class="btn-square bg-red-500 px-1 py-1 text-lg text-white"/>
 
-                   <div class="w-full  px-2 py-1">{{$file->getClientOriginalName()}}</div>
-               </div>
+                <span class="text-gray-500 font-medium text-sm ml-4">
+                    {{ $file->getClientOriginalName() }}
+                </span>
 
-           @endforeach
+            </div>
 
-       @endif
+        @endforeach
 
     </div>
 
@@ -49,6 +48,9 @@
 
     document.getElementById("uploadInput").onchange = ()=>{
         let files = document.getElementById("uploadInput").files;
+
+
+        console.log(files)
     }
 
 </script>

@@ -77,7 +77,7 @@ class Documents extends Component
     public bool $showDrawer = false;
 
 
-    public int $author_id = 0; 
+    public int $author_id = 0;
 
     public array $sortBy = ['column' => 'title', 'direction' => 'asc'];
 
@@ -110,36 +110,36 @@ class Documents extends Component
     {
 
         $records = Document::query()
-            ->with(['user'])
-            // ->withAggregate('user', 'name') 
+            // ->with(['user'])
+            // ->withAggregate('user', 'name')
             ->when($this->query, fn(Builder $q) => $q->where('title', 'like', "%$this->query%"))
-            ->when($this->author_id, fn(Builder $q) => $q->where('user_id', $this->author_id)) 
+            ->when($this->author_id, fn(Builder $q) => $q->where('user_id', $this->author_id))
             ->orderBy(...array_values($this->sortBy))
             ->paginate(20);
 
 
 
-        return view('livewire.docs.index',[
+        // return view('livewire.docs.index',[
 
-            'records' => $records
-        ]);
-        
+        //     'records' => $records
+        // ]);
 
- 
+        return view('livewire.docs.index');
+
     }
 
 
 
         // Add a new property
-        public function with(): array
-        {
+        // public function with(): array
+        // {
 
 
 
-            return [
-                'authors' => User::all(), 
-            ];
-        }
+        //     return [
+        //         'authors' => User::all(),
+        //     ];
+        // }
 
 
 

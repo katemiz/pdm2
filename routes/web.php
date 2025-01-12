@@ -6,6 +6,8 @@ use Livewire\Volt\Volt;
 
 
 use App\Livewire\Documents;
+use App\Livewire\DocTable;
+
 use App\Livewire\DocumentShow;
 use App\Livewire\DocumentCreateUpdate;
 
@@ -42,7 +44,12 @@ Route::middleware(['auth'])->group(function () {
     // *****************************************************************************
     // Route::get('/docs', Documents::class);
 
-    Volt::route('/docs', 'docs.index');
+    // Route::get('/docs', DocTable::class);
+
+    Route::view('/docs', 'docs-index');
+
+
+    // Volt::route('/docs', 'docs.index');
     Volt::route('/docs/create', 'docs.create');     // User (create)
     Volt::route('/docs/{id}', 'docs.show');         // User (edit)
     Route::get('/docs/{id}/edit', DocumentCreateUpdate::class);

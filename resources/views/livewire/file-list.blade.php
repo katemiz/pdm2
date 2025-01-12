@@ -21,14 +21,6 @@ new class extends Component {
 
     public $media_id;
 
-
-
-
-
-
-
-
-
     public function triggerMediaDelete($idMedia) {
         $this->media_id = $idMedia;
         $this->dispatch('deleteConfirm', media_id:$idMedia);
@@ -76,7 +68,7 @@ new class extends Component {
 
 
 
-
+@if ( count($media) > 0 )
 
 <div class="flex items-center justify-center py-4 my-4">
 
@@ -153,6 +145,7 @@ new class extends Component {
 
 </div>
 
+
 <script >
 
     window.addEventListener('deleteConfirm',function(e) {
@@ -192,5 +185,19 @@ new class extends Component {
     })
 
 </script>
+
+
+
+@else
+
+
+<div></div>
+
+@endif
+
+
+
+
+
 
 

@@ -25,6 +25,8 @@ class DocumentCreateUpdate extends Component
 
     #[Validate(['files.*' => 'max:50000'])]
     public $files = [];
+    public $files2 = [];
+
 
     public function mount($id = null) {
 
@@ -65,6 +67,8 @@ class DocumentCreateUpdate extends Component
 
     public function update()
     {
+
+        dd($this->files);
         // FORM PARAMETERS UPDATE
         $this->form->update($this->id);
 
@@ -87,5 +91,15 @@ class DocumentCreateUpdate extends Component
             }
         }
     }
+
+
+
+
+
+    public function backToView($id)
+    {
+        return redirect(Str::replace('{id}',$id,$this->conf['show']['route']));
+    }
+
 
 }

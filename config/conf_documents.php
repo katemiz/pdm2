@@ -19,13 +19,15 @@ return [
     'formCreate' => [
         'title' => 'Documents',
         'subtitle' => 'Add New Document',
-        'route' => '/docs/create'
+        'route' => '/docs/create',
+        'buttonTitle' => 'Add Document',
     ],
 
     'formEdit' => [
         'title' => 'Documents',
         'subtitle' => 'Update Existing Document Parameters',
-        'route' => '/docs/{id}/edit'
+        'route' => '/docs/{id}/edit',
+        'buttonTitle' => 'Update Document',
     ],
 
     'show' => [

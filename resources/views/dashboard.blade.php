@@ -9,5 +9,8 @@
     </div>
     </div>
 
+    <livewire:doc-table/>
+
+
 
 </x-app-layout>
